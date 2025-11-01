@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/bg_gradient"
+    tools:context=".MainActivity">
+
+    <!-- App title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AppCamera"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/textPrimary"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Preview container for image/video -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPreview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:layout_marginBottom="24dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="Preview da foto"
+                android:visibility="visible" />
+
+            <VideoView
+                android:id="@+id/videoView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Botões para foto e vídeo -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCapturePhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tirar Foto"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp"
+        app:icon="@drawable/ic_camera"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:cornerRadius="24dp"
+        app:backgroundTint="@color/buttonAccent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRecordVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gravar Vídeo"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:icon="@drawable/ic_videocam"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:cornerRadius="24dp"
+        app:backgroundTint="@color/buttonAccent" />
+
+</LinearLayout>
