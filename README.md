@@ -1,125 +1,269 @@
 <div align="center">
-📸 AppCamera - Aplicativo Android 📱
 
-Um aplicativo Android nativo, desenvolvido em Java, que demonstra como acionar a câmara do dispositivo para tirar fotos e gravar vídeos.
+<img src="https://cdn-icons-png.flaticon.com/512/685/685655.png" alt="AppCamera Logo" width="110" />
+
+# 📸 AppCamera — Aplicativo Android
+
+**Um aplicativo Android nativo, desenvolvido em Java, que demonstra como acionar**
+**a câmera do dispositivo para tirar fotos e gravar vídeos via Android Intents.**
+
+<br>
+
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![Gradle](https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)
+![MediaStore](https://img.shields.io/badge/API-MediaStore-blueviolet?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Completo_(Demo)-brightgreen?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+
 </div>
 
-<p align="center"> <img alt="Status do Projeto" src="https://img.shields.io/badge/Status-Completo_(Demo)-brightgreen?style=for-the-badge"> <img alt="Linguagem" src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white"> <img alt="Plataforma" src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"> <img alt="Build" src="https://img.shields.io/badge/Build-Gradle-02303A?style=for-the-badge&logo=gradle"> </p>
+---
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-📖 Sobre o Projeto
+## 📚 Tabela de Conteúdos
 
-O AppCamera é um projeto de demonstração simples para Android que ilustra uma das funcionalidades mais comuns do sistema: interagir com a câmara.
+> Navegue rapidamente pelas seções do projeto.
 
-Em vez de construir uma interface de câmara complexa do zero (usando APIs como CameraX ou Camera2), este aplicativo utiliza Intents do Android (MediaStore) para "despachar" o pedido para a aplicação de câmara nativa do telemóvel.
+| # | Seção |
+|:-:|:------|
+| 1 | [📖 Sobre o Projeto](#-sobre-o-projeto) |
+| 2 | [✨ Funcionalidades Principais](#-funcionalidades-principais) |
+| 3 | [🛠️ Pilha de Tecnologias](#️-pilha-de-tecnologias) |
+| 4 | [🔑 Destaques da Implementação](#-destaques-da-implementação) |
+| 5 | [📂 Estrutura do Repositório](#-estrutura-do-repositório) |
+| 6 | [🚀 Como Executar](#-como-executar) |
+| 7 | [🤝 Como Contribuir](#-como-contribuir) |
+| 8 | [👨‍💻 Autor](#-autor) |
+| 9 | [📄 Licença](#-licença) |
 
-Após a captura, o aplicativo está configurado para receber o vídeo gravado e exibi-lo diretamente num VideoView na tela principal.
+---
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-✨ Funcionalidades Principais
+## 📖 Sobre o Projeto
 
-  📸 Tirar Foto:
+> **AppCamera** é um projeto de demonstração Android que ilustra uma das funcionalidades mais comuns do ecossistema mobile: **interagir com a câmera do dispositivo** de forma simples, segura e sem complexidade desnecessária.
 
-Um botão que aciona a Intent MediaStore.ACTION_IMAGE_CAPTURE.
+Em vez de construir uma interface de câmera do zero (usando APIs de baixo nível como `CameraX` ou `Camera2`), este app utiliza **Android Intents via `MediaStore`** — a abordagem recomendada para delegar o pedido à câmera nativa do dispositivo, aproveitando toda a sua estabilidade e compatibilidade.
 
-Abre a aplicação de câmara padrão do dispositivo para que o utilizador possa tirar uma fotografia.
+Após a captura, o vídeo gravado é recebido pelo `onActivityResult` e reproduzido diretamente em um `VideoView` na tela principal.
 
-  📹 Gravar Vídeo:
+---
 
-Um botão que aciona a Intent MediaStore.ACTION_VIDEO_CAPTURE.
+## ✨ Funcionalidades Principais
 
-Abre a aplicação de câmara no modo de vídeo.
+| Ícone | Funcionalidade | Intent Utilizada | Descrição |
+|:-----:|:---------------|:----------------:|:----------|
+| 📸 | **Tirar Foto** | `ACTION_IMAGE_CAPTURE` | Abre a câmera nativa do dispositivo no modo fotografia. |
+| 📹 | **Gravar Vídeo** | `ACTION_VIDEO_CAPTURE` | Abre a câmera nativa no modo de gravação de vídeo. |
+| 📺 | **Reprodução de Vídeo** | `onActivityResult` | Captura o retorno da gravação e reproduz automaticamente no `VideoView`. |
+| 🎨 | **Design Personalizado** | — | Fundo em gradiente (`bg_gradient.xml`) e ícones vetoriais (`ic_camera.xml`, `ic_videocam.xml`). |
 
-  📺 Exibição de Média:
+> ⚠️ **Nota de Implementação:** Na versão atual, o app está preparado para lidar com o retorno do vídeo. A captura do `Bitmap` retornado pela foto via `onActivityResult` ainda não está implementada.
 
-Após a gravação de um vídeo, o resultado é capturado pelo onActivityResult.
+---
 
-O vídeo é então carregado num VideoView e reproduzido automaticamente.
+## 🛠️ Pilha de Tecnologias
 
-  🎨 Design Personalizado:
+| Tecnologia | Função no Projeto |
+|:-----------|:------------------|
+| **Java** | Linguagem principal de toda a lógica do aplicativo. |
+| **Android SDK** | Framework nativo para desenvolvimento Android. |
+| **XML (Layouts)** | Define a interface do usuário: botões, `VideoView` e estrutura visual. |
+| **Android Intents (MediaStore)** | `ACTION_IMAGE_CAPTURE` e `ACTION_VIDEO_CAPTURE` para delegar à câmera nativa. |
+| **VideoView** | Componente nativo para reprodução do vídeo capturado diretamente na tela. |
+| **AndroidManifest.xml** | Declaração de permissões e features de hardware necessárias. |
+| **Gradle (Kotlin DSL)** | Sistema de build e gestão de dependências do projeto. |
 
-Inclui um fundo em gradiente (bg_gradient.xml) e ícones vetoriais (ic_camera.xml, ic_videocam.xml).
+### 🔐 Permissões Declaradas
 
-(Nota: Na versão atual do código, a app está preparada para lidar com o retorno do vídeo, mas a captura do retorno da foto (Bitmap) no onActivityResult não está implementada.)
+| Permissão | Finalidade |
+|:----------|:-----------|
+| `android.permission.CAMERA` | Acesso à câmera do dispositivo. |
+| `android.permission.RECORD_AUDIO` | Captura de áudio durante a gravação de vídeo. |
+| `android.hardware.camera` | Feature de hardware — indica que o app requer câmera. |
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-🛠️ Tecnologias Utilizadas
+---
 
-Java: Linguagem principal do aplicativo.
+## 🔑 Destaques da Implementação
 
-Android SDK: Framework nativo para desenvolvimento Android.
+### 📷 Fluxo via Android Intents
 
-XML (Layouts): Usado para definir a interface do utilizador, incluindo os botões e o VideoView.
+> A abordagem com Intents é a forma mais simples, segura e compatível de usar a câmera no Android — sem a complexidade de gerenciar permissões de câmera em tempo de execução ou ciclo de vida do preview.
 
-Android Intents: MediaStore.ACTION_IMAGE_CAPTURE e MediaStore.ACTION_VIDEO_CAPTURE para interagir com a câmara.
+```java
+// Exemplo: Acionar a câmera para gravar vídeo
+Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+startActivityForResult(intent, REQUEST_CODE_VIDEO);
 
-  Gestão de Permissões: O AndroidManifest.xml solicita permissões essenciais:
+// Receber o vídeo gravado de volta
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
 
-android.permission.CAMERA
+    if (requestCode == REQUEST_CODE_VIDEO && resultCode == RESULT_OK) {
+        Uri videoUri = data.getData();    // URI do vídeo gravado
+        videoView.setVideoURI(videoUri);  // Carrega no VideoView
+        videoView.start();               // Reproduz automaticamente
+    }
+}
+```
 
-android.permission.RECORD_AUDIO
+**Fluxo resumido:**
 
-android.hardware.camera (feature)
+```
+👆 Usuário pressiona "Gravar Vídeo"
+          ↓
+📤 startActivityForResult() dispara a Intent
+          ↓
+📹 Câmera nativa do dispositivo abre
+          ↓
+✅ Usuário finaliza a gravação
+          ↓
+📥 onActivityResult() recebe o resultado
+          ↓
+📺 VideoView carrega e reproduz o vídeo
+```
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-📂 Estrutura do Repositório
+---
+
+## 📂 Estrutura do Repositório
+
+```plaintext
 appcamera/
-
 │
-
-├── app/
-
-│   ├── build.gradle.kts      # Configurações do módulo 'app' (dependências)
-
-│   ├── src/
-
-│   │   ├── main/
-
-│   │   │   ├── java/com/example/appcamera/
-
-│   │   │   │   └── MainActivity.java   # A lógica principal da aplicação
-
-│   │   │   ├── res/
-
-│   │   │   │   ├── layout/
-
-│   │   │   │   │   └── activity_main.xml # O design da interface (UI)
-
-│   │   │   │   ├── drawable/           # Ícones e o gradiente
-
-│   │   │   │   └── ...
-
-│   │   │   └── AndroidManifest.xml     # Definição de permissões e atividades
-
+├── 📄 build.gradle.kts                    # ⚙️  Configurações do projeto (nível raiz)
+├── 📄 settings.gradle.kts                 # ⚙️  Configurações do Gradle
 │
+└── 📁 app/
+    ├── 📄 build.gradle.kts                # ⚙️  Configurações do módulo 'app'
+    │
+    └── 📁 src/main/
+        │
+        ├── 📄 AndroidManifest.xml         # 🔐 Permissões, features e atividades
+        │
+        ├── 📁 java/com/example/appcamera/
+        │   └── 📄 MainActivity.java       # 🧠 Lógica principal — Intents e VideoView ← CORE
+        │
+        └── 📁 res/
+            ├── 📁 layout/
+            │   └── 📄 activity_main.xml   # 🖼️  Interface do usuário (botões + VideoView)
+            └── 📁 drawable/
+                ├── 📄 bg_gradient.xml     # 🎨 Fundo em gradiente
+                ├── 📄 ic_camera.xml       # 📸 Ícone vetorial da câmera
+                └── 📄 ic_videocam.xml     # 🎥 Ícone vetorial do vídeo
+```
 
-├── build.gradle.kts          # Configurações do projeto (nível raiz)
+---
 
-└── settings.gradle.kts       # Configurações do Gradle
+## 🚀 Como Executar
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-💿 Como Executar o Projeto
+### 📋 Pré-requisitos
 
-Para compilar e executar este projeto, irá precisar do Android Studio.
+| Requisito | Detalhe |
+|:----------|:--------|
+| **Android Studio** | Versão **Hedgehog** ou superior, instalada e configurada. |
+| **JDK** | Versão **11 ou superior** (geralmente incluído no Android Studio). |
+| **Dispositivo ou Emulador** | Android físico (USB + depuração ativada) ou AVD com câmera configurada. |
 
-Clone o repositório: git clone https://github.com/victorhjsantiago/appcamera.git
+---
 
-Abra no Android Studio:
+### 🔧 Passo a Passo
 
-Abra o Android Studio.
+**1. Clone o repositório:**
 
-Selecione "Open an Existing Project".
+```bash
+git clone https://github.com/VictorHJesusSantiago/appcamera.git
+```
 
-Navegue até à pasta appcamera clonada e selecione-a.
+**2. Abra no Android Studio:**
 
-Sincronize o Gradle:
+```
+Android Studio → File → Open → Selecione a pasta 'appcamera'
+```
 
-Espere o Android Studio indexar os ficheiros e fazer o download das dependências do Gradle (conforme definido em build.gradle.kts).
+**3. Sincronize o Gradle:**
 
-Execute a Aplicação:
+```
+Build → Sync Project with Gradle Files
+```
 
-Conecte um dispositivo Android físico (via USB) ou inicie um Emulador (Android Virtual Device).
+> O Android Studio detectará o projeto e fará o download das dependências automaticamente.
 
-Clique no botão "Run" (▶️) na barra de ferramentas do Android Studio.
+**4. Execute a aplicação:**
 
-O aplicativo solicitará permissões de câmara e áudio. Após conceder, pode testar os botões.
+```
+Run → Run 'app'  (ou clique no botão ▶️ na barra de ferramentas)
+```
+
+**5. Conceda as permissões:**
+
+> Na primeira execução, o sistema Android solicitará as permissões de **câmera** e **áudio**. Conceda-as para habilitar todas as funcionalidades.
+
+---
+
+### 📱 Testando no Emulador
+
+| Funcionalidade | Como Testar no AVD |
+|:---------------|:-------------------|
+| 📸 **Tirar Foto** | O emulador possui câmera virtual configurável em `Extended Controls → Camera`. |
+| 📹 **Gravar Vídeo** | Disponível na câmera virtual do AVD; use `Extended Controls` para simular. |
+| 📺 **Reprodução** | O vídeo será reproduzido automaticamente no `VideoView` após a gravação. |
+
+---
+
+## 🤝 Como Contribuir
+
+> Contribuições são muito bem-vindas! Siga as etapas abaixo para colaborar de forma organizada.
+
+| Passo | Ação | Comando |
+|:-----:|:-----|:--------|
+| 1️⃣ | **Fork** | Crie um fork do repositório para a sua conta. | — |
+| 2️⃣ | **Branch** | Crie sua feature branch a partir da `main`. | `git checkout -b feature/NovaFeature` |
+| 3️⃣ | **Commit** | Salve as alterações com mensagem clara e semântica. | `git commit -m 'feat: Adiciona NovaFeature'` |
+| 4️⃣ | **Push** | Envie a branch para o repositório remoto. | `git push origin feature/NovaFeature` |
+| 5️⃣ | **Pull Request** | Abra um PR detalhando as mudanças realizadas. | — |
+
+<div align="center">
+
+<br>
+
+**Se este projeto foi útil para os seus estudos, deixe uma estrela ⭐️ no repositório!**
+
+</div>
+
+---
+
+## 👨‍💻 Autor
+
+<div align="center">
+
+<br>
+
+**Victor H. J. Santiago**
+
+<br>
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/VictorHJesusSantiago)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/victor-henrique-de-jesus-santiago/)
+
+</div>
+
+---
+
+## 📄 Licença
+
+<div align="center">
+
+Este projeto está distribuído sob a **Licença MIT**.
+Consulte o arquivo [`LICENSE`](./LICENSE) no repositório para mais informações.
+
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+
+</div>
+
+---
+
+<div align="center">
+
+*Feito com 📸 e Java por **Victor H. J. Santiago***
+
+</div>
